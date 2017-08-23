@@ -6,7 +6,7 @@
 /*   By: gbetting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 15:25:42 by gbetting          #+#    #+#             */
-/*   Updated: 2017/08/23 22:52:40 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 23:13:41 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,12 @@ char	*ft_getknowedline(int file, int n)
 	if ((j = read(file, result, n)) > 0 && j != n)
 	{
 		while (j != n)
+		{
 			if (!((j += read(file, result + j, n - j)) > 0))
 				return (0);
+		}
 	}
-	else
+	else if (!j)
 		return (0);
 	result[n] = '\0';
 	if (read(file, &buffer, 1) > 0 && buffer == '\n')
