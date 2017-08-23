@@ -6,7 +6,7 @@
 /*   By: gbetting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 18:20:18 by gbetting          #+#    #+#             */
-/*   Updated: 2017/08/23 18:40:35 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 20:03:30 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,12 @@ int main(int argv,char **args)
 		while(i < argv)
 		{
 			file = open(args[i],O_RDONLY);
-			if(!(tab = ft_main(file,chara,&x,&y)))
+			if(!ft_analyse(file))
 				write(1,"map error\n",10);
 			else
 				ft_printd(tab,x,y);
 			i++;
+			close(file);
 			if(i < argv)
 				write(1,"\n",1);
 		}

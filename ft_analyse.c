@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 17:35:47 by ptruffau          #+#    #+#             */
-/*   Updated: 2017/08/23 19:42:38 by ptruffau         ###   ########.fr       */
+/*   Updated: 2017/08/23 19:59:08 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	ft_jaime_les_carres(t_save *save, int x, int y, int i)
 		while (j >= 0)
 		{
 			if (save->map[y + i - j][x + i] == save->map[save->y_max][1] ||
-				save->map[y + i][x + i - j] == save->map[save->y_max][1]
+				save->map[y + i][x + i - j] == save->map[save->y_max][1])
 				test = 1;
 			j--;
 		}

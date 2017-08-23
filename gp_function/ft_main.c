@@ -6,7 +6,7 @@
 /*   By: gbetting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 14:03:25 by gbetting          #+#    #+#             */
-/*   Updated: 2017/08/23 17:37:32 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 19:56:10 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-char	**ft_main(int file, char *chara, int *i, int *line)
+char	**ft_main(int file, int *i, int *line)
 {
 	char**tab;
 	int cur;
+	char *chara;
 
 	cur = 0;
 	if (!(chara = ft_getline(file, 0, i)))
@@ -41,7 +42,7 @@ char	**ft_main(int file, char *chara, int *i, int *line)
 		free(tab);
 		return (0);
 	}
-	chara = chara + 1;
+	tab[*line] = chara;
 	return (tab);
 }
 
