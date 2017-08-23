@@ -6,12 +6,14 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 17:35:47 by ptruffau          #+#    #+#             */
-/*   Updated: 2017/08/23 18:28:02 by ptruffau         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:52:26 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
-#include "pointh.h"
+#include "ft_analyse.h"
+#include "gp_function/ft_main.h"
+#include "gp_function/ft_fonctions_chiants.h"
 
 void	ft_square_founded(t_save *save)
 {
@@ -24,7 +26,7 @@ void	ft_square_founded(t_save *save)
 		j = save->x;
 		while (j < save->x + save->dim)
 		{
-			save->map[i][j] = 7;
+			save->map[i][j] = save->chara[1];
 			j++;
 		}
 		i++;
@@ -43,7 +45,7 @@ void	ft_analyse_balayage(t_save *save)
 		while (x < save->x_max - save->dim)
 		{
 			if (save->map[y][x] != 1)
-				ft_jaime_les_carres(save, x, y, 0, 0);
+				ft_jaime_les_carres(save, x, y, 0);
 			x++;
 		}
 		y++;
@@ -84,8 +86,11 @@ int 	ft_analyse(int file)
 	t_save	save;
 
 	save.dim = 0;
-	if(!(save.map = ft_main(file, save.chara, 0, save.x_max, save.y_max)))
+	if(!(save.map = ft_main(file, save.chara, &save.x_max, &save.y_max)))
 		return (0);
+	printf("%c,%c",save.chara[0],save.chara[1]);
 	ft_analyse_balayage(&save);
 	ft_square_founded(&save);
+	ft_printd(save.map,save.x_max,save.y_max);
+	return (1);
 }

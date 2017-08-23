@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 03:16:27 by ptruffau          #+#    #+#             */
-/*   Updated: 2017/08/23 18:28:30 by ptruffau         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:39:18 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ typedef struct	s_save
 	int y_max;
 	char *chara;
 	char **map;
-	int **map;
 }				t_save;
 void			ft_analyse_balayage(t_save *save);
 void			ft_jaime_les_carres(t_save *save, int x, int y, int a);
