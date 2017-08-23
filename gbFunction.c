@@ -6,7 +6,7 @@
 /*   By: gbetting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 01:43:56 by gbetting          #+#    #+#             */
-/*   Updated: 2017/08/22 13:29:12 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 10:22:42 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,45 @@ char	*gp_getknowedline(int file,int n)
 {
 	char *result;
 	char buffer;
+	int j;
 
 	if(!(result = malloc(sizeof(char) * (n+1))))
 		return(0);
-	if(read(file,result,n) != n)
-		return (0);
+	if((j = read(file,result,n)) && j != n)
+		while(j != n)
+			if(!(j += read(file,result+j,n-j)))
+			{
+				printf("Nothing readed\n");
+				return(0);
+			}
 	result[n] = '\0';
+	//printf("full read passed : %s",result);
 	if(read(file,&buffer,1) && buffer == '\n')
 		return(result);
+	printf("is not a \\n : %c\n",buffer);
 	free(result);
 	return(0);
+}
+
+int		gp_isvalid(char **a, int x, int y, char *c)
+{
+	int x_;
+
+	x -= 1;
+	y -= 1;
+	x_ = x;
+	while(y > 0)
+	{
+		while(x > 0)
+		{
+			if(a[y][x] != c[0] && a[y][x] != c[1])
+				return(0);
+			x--;
+		}
+		x = x_;
+		y--;
+	}
+	return(1);
 }
 
 int gp_isfinish(int file)
@@ -40,7 +69,6 @@ int gp_isfinish(int file)
 
 	if(read(file,&buffer,1) && buffer != '\0')
 	{
-		//printf("buffer : %c\n",buffer);
 		return(0);
 	}
 	return(1);
@@ -84,13 +112,15 @@ char	*gp_fprocess(char *line, int *theint)
 	l = ft_strlen(line);
 	if (l < 3)
 		return(0);
-	chara = malloc(sizeof(char) * 3);
-	numb = malloc(sizeof(char) * l-3);
-	ft_strncpy(numb,line,l-4);
+	if(!(chara = malloc(sizeof(char) * 3)))
+		return(0);
+	if(!(numb = malloc(sizeof(char) * l-3)))
+		return(0);
+	ft_strncpy(numb,line,l-3);
 	*theint = ft_atoi(numb);
-	chara[0] = line[l - 2];
-	chara[1] = line[l - 1];
-	chara[2] = line[l];
+	chara[0] = line[l - 3];
+	chara[1] = line[l - 2];
+	chara[2] = line[l - 1];
 	return(chara);
 }
 
@@ -119,7 +149,7 @@ int		ft_strlen(char *str)
 	l = 0;
 	while(str[l])
 		l++;
-	return(l-1);
+	return(l);
 }
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
