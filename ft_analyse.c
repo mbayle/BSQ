@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 17:35:47 by ptruffau          #+#    #+#             */
-/*   Updated: 2017/08/23 19:59:08 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 22:01:03 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_square_founded(t_save *save)
 		j = save->x;
 		while (j < save->x + save->dim)
 		{
-			save->map[i][j] = save->map[save->y_max][2] ;
+			save->map[i][j] = save->map[save->y_max][2];
 			j++;
 		}
 		i++;
@@ -62,7 +62,7 @@ void	ft_jaime_les_carres(t_save *save, int x, int y, int i)
 	while (test == 0 && i + x < save->x_max && i + y < save->y_max)
 	{
 		j = i;
-		while (j >= 0)
+		while (j >= 0 && test == 0)
 		{
 			if (save->map[y + i - j][x + i] == save->map[save->y_max][1] ||
 				save->map[y + i][x + i - j] == save->map[save->y_max][1])
@@ -81,15 +81,15 @@ void	ft_jaime_les_carres(t_save *save, int x, int y, int i)
 	}
 }
 
-int 	ft_analyse(int file)
+int		ft_analyse(int file)
 {
 	t_save	save;
 
 	save.dim = 0;
-	if(!(save.map = ft_main(file, &save.x_max, &save.y_max)))
+	if (!(save.map = ft_main(file, &save.x_max, &save.y_max)))
 		return (0);
 	ft_analyse_balayage(&save);
 	ft_square_founded(&save);
-	ft_printd(save.map,save.x_max,save.y_max);
+	ft_printd(save.map, save.x_max, save.y_max);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: gbetting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 15:25:42 by gbetting          #+#    #+#             */
-/*   Updated: 2017/08/23 17:37:06 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 22:52:40 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,12 +23,16 @@ char	*ft_getknowedline(int file, int n)
 
 	if (!(result = malloc(sizeof(char) * (n + 1))))
 		return (0);
-	if ((j = read(file, result, n)) && j != n)
+	if ((j = read(file, result, n)) > 0 && j != n)
+	{
 		while (j != n)
-			if (!(j += read(file, result + j, n - j)))
+			if (!((j += read(file, result + j, n - j)) > 0))
 				return (0);
+	}
+	else
+		return (0);
 	result[n] = '\0';
-	if (read(file, &buffer, 1) && buffer == '\n')
+	if (read(file, &buffer, 1) > 0 && buffer == '\n')
 		return (result);
 	free(result);
 	return (0);
@@ -42,11 +46,11 @@ char	*ft_getline(int file, char buffer, int *x)
 	*x = 0;
 	if (!(result = malloc(sizeof(char) * ++*x)))
 		return (0);
-	if (read(file, &buffer, 1))
+	if (read(file, &buffer, 1) > 0)
 		result[0] = buffer;
 	else
 		return (0);
-	while (read(file, &buffer, 1) && buffer != '\n')
+	while (read(file, &buffer, 1) > 0 && buffer != '\n')
 	{
 		if (buffer == '\0' || !(megarray = malloc(sizeof(char) * ++*x)))
 			return (0);

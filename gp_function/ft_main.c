@@ -6,7 +6,7 @@
 /*   By: gbetting <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/23 14:03:25 by gbetting          #+#    #+#             */
-/*   Updated: 2017/08/23 19:56:10 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 22:07:08 by gbetting         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@
 
 char	**ft_main(int file, int *i, int *line)
 {
-	char**tab;
-	int cur;
-	char *chara;
+	char	**tab;
+	int		cur;
+	char	*chara;
 
 	cur = 0;
 	if (!(chara = ft_getline(file, 0, i)))
@@ -71,7 +71,7 @@ int		ft_isfinish(int file)
 {
 	char buffer;
 
-	if (read(file, &buffer, 1) && buffer != '\0')
+	if (read(file, &buffer, 1) > 0 && buffer != '\0')
 		return (0);
 	return (1);
 }
