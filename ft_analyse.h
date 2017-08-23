@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/22 03:16:27 by ptruffau          #+#    #+#             */
-/*   Updated: 2017/08/23 18:39:18 by gbetting         ###   ########.fr       */
+/*   Updated: 2017/08/23 19:42:58 by ptruffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ typedef struct	s_save
 	int dim;
 	int x_max;
 	int y_max;
-	char *chara;
 	char **map;
 }				t_save;
 void			ft_analyse_balayage(t_save *save);
