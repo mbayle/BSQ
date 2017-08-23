@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 17:35:47 by ptruffau          #+#    #+#             */
-/*   Updated: 2017/08/23 15:07:35 by ptruffau         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:22:50 by ptruffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	ft_jaime_les_carres(t_save *save, int x, int y, int i)
 	}
 }
 
-void	ft_analyse(void)
+void	ft_analyse(int file)
 {
 	t_save	save;
 
