@@ -6,7 +6,7 @@
 /*   By: ptruffau <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/08/21 17:35:47 by ptruffau          #+#    #+#             */
-/*   Updated: 2017/08/23 18:22:50 by ptruffau         ###   ########.fr       */
+/*   Updated: 2017/08/23 18:28:02 by ptruffau         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,12 +79,13 @@ void	ft_jaime_les_carres(t_save *save, int x, int y, int i)
 	}
 }
 
-void	ft_analyse(int file)
+int 	ft_analyse(int file)
 {
 	t_save	save;
 
 	save.dim = 0;
-	save.map = ft_main(file, save.chara, 0, save.x_max, save.y_max);
+	if(!(save.map = ft_main(file, save.chara, 0, save.x_max, save.y_max)))
+		return (0);
 	ft_analyse_balayage(&save);
 	ft_square_founded(&save);
 }
